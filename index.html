@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đồng Hồ Đếm Ngược Sinh Động</title>
+    <title>TTLH</title>
     <style>
         body {
             text-align: center;
@@ -11,9 +11,10 @@
         }
         #clockCanvas {
             margin-top: 50px;
-            border: 5px solid #333;
+            /* border: 5px solid #333; */
             border-radius: 50%;
-            background-color: #f3f3f3;
+            background-image: url('clock_with_dog.png'); /* Thay bằng đường dẫn ảnh của bạn */
+            background-size: cover;
         }
         #countdown {
             font-size: 24px;
@@ -23,14 +24,15 @@
     </style>
 </head>
 <body>
-    <h1>Lan Hương cố lên ^^</h1>
-    <canvas id="clockCanvas" width="300" height="300"></canvas>
+    <h1>Lan Hương cố nhên ^^ </h1>
+    <canvas id="clockCanvas" width="400" height="400"></canvas>
     <div id="countdown"></div>
 
     <script>
         var canvas = document.getElementById("clockCanvas");
         var ctx = canvas.getContext("2d");
 
+        // Vẽ đồng hồ
         function drawClock() {
             var now = new Date();
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -38,28 +40,11 @@
             var radius = canvas.height / 2;
             ctx.translate(radius, radius);
             radius = radius * 0.90;
-            drawFace(ctx, radius);
-            drawNumbers(ctx, radius);  // Thêm số
-            drawTime(ctx, radius, now);
+            drawTime(ctx, radius, now);  // Vẽ kim giờ, phút, giây
             ctx.translate(-canvas.width / 2, -canvas.height / 2);
         }
 
-        function drawFace(ctx, radius) {
-            ctx.beginPath();
-            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-            ctx.fillStyle = 'white';
-            ctx.fill();
-
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = radius * 0.1;
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-            ctx.fillStyle = '#333';
-            ctx.fill();
-        }
-
+        // Vẽ số trên đồng hồ
         function drawNumbers(ctx, radius) {
             var ang;
             var num;
@@ -78,6 +63,7 @@
             }
         }
 
+        // Vẽ kim đồng hồ
         function drawTime(ctx, radius, now) {
             var hour = now.getHours();
             var minute = now.getMinutes();
@@ -94,6 +80,7 @@
             drawHand(ctx, second, radius * 0.9, radius * 0.02, 'red');
         }
 
+        // Vẽ kim
         function drawHand(ctx, pos, length, width, color = '#333') {
             ctx.beginPath();
             ctx.lineWidth = width;
@@ -106,14 +93,15 @@
             ctx.rotate(-pos);
         }
 
+        // Hàm đếm ngược đến 5 giờ chiều
         function countdownToFivePM() {
             var now = new Date();
             var targetTime = new Date();
             
-            targetTime.setHours(17, 0, 0, 0);
+            targetTime.setHours(17, 0, 0, 0);  // Đặt thời gian là 5 giờ chiều
 
             if (now > targetTime) {
-                targetTime.setDate(targetTime.getDate() + 1);
+                targetTime.setDate(targetTime.getDate() + 1);  // Nếu đã qua 5h thì đếm cho ngày tiếp theo
             }
 
             var timeDifference = targetTime - now;
@@ -124,15 +112,16 @@
 
             document.getElementById("countdown").innerHTML = "Còn lại: " + hours + " giờ " + minutes + " phút " + seconds + " giây";
 
-            setTimeout(countdownToFivePM, 1000);
+            setTimeout(countdownToFivePM, 1000);  // Cập nhật mỗi giây
         }
 
+        // Cập nhật đồng hồ và đếm ngược mỗi giây
         function updateClock() {
             drawClock();
             countdownToFivePM();
         }
 
-        setInterval(updateClock, 1000);
+        setInterval(updateClock, 1000);  // Cập nhật đồng hồ và đếm ngược mỗi giây
     </script>
 </body>
 </html>
