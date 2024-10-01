@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TTLH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            color: #333;
+            margin: 0;
+            padding: 20px;
         }
         #clockCanvas, #sleepClockCanvas {
             margin-top: 50px;
             border-radius: 50%;
             background-size: cover;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s ease;
         }
         #clockCanvas {
             background-image: url('clock_with_dog.png'); /* Thay bằng đường dẫn ảnh của bạn */
@@ -20,16 +27,21 @@
         #sleepClockCanvas {
             background-image: url('panda_clock.png'); /* Thay bằng đường dẫn ảnh con gấu trúc */
         }
+        #clockCanvas:hover, #sleepClockCanvas:hover {
+            transform: scale(1.05);
+        }
         #countdown, #sleepCountdown {
             font-size: 24px;
             margin-top: 20px;
-            color: #ff0000;
+            color: #ff6347;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body>
+<body>    
     <h1>Anh xin lỗi Lan Hương nhiều :( <br> Lan Hương cố lên ^^</h1>
-    
+
     <!-- Đồng hồ hiện tại và đếm ngược đến 5 giờ chiều -->
     <canvas id="clockCanvas" width="400" height="400"></canvas>
     <div id="countdown"></div>
