@@ -20,6 +20,7 @@
             background-size: cover;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.5s ease;
+            position: relative;
         }
         #clockCanvas {
             background-image: url('clock_with_dog.png'); /* Thay bằng đường dẫn ảnh của bạn */
@@ -37,9 +38,44 @@
             font-weight: 600;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: rotate(-45deg);
+            animation: fly 1.5s ease-out forwards;
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+        @keyframes fly {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(-45deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(1.5) rotate(-45deg);
+            }
+        }
     </style>
 </head>
-<body>    
+<body>
     <h1>Anh xin lỗi Lan Hương nhiều :( <br> Lan Hương cố lên ^^</h1>
 
     <!-- Đồng hồ hiện tại và đếm ngược đến 5 giờ chiều -->
@@ -102,6 +138,26 @@
             ctx.lineTo(0, -length);
             ctx.stroke();
             ctx.rotate(-pos);
+        }
+
+        // Tạo trái tim khi click
+        clockCanvas.addEventListener('click', function (e) {
+            createHeart(e.clientX, e.clientY);
+        });
+
+        sleepCanvas.addEventListener('click', function (e) {
+            createHeart(e.clientX, e.clientY);
+        });
+
+        function createHeart(x, y) {
+            var heart = document.createElement('div');
+            heart.classList.add('heart');
+            document.body.appendChild(heart);
+            heart.style.left = (x - 10) + 'px';  // Đặt trái tim vào vị trí click
+            heart.style.top = (y - 10) + 'px';
+            setTimeout(function () {
+                heart.remove();  // Xóa trái tim sau khi hiệu ứng kết thúc
+            }, 1500);
         }
 
         // Hàm đếm ngược đến 5 giờ chiều
