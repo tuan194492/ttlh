@@ -6,21 +6,27 @@
     <title>TTLH</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             text-align: center;
             font-family: 'Quicksand', sans-serif;
             background: linear-gradient(to right, #ffecd2, #fcb69f);
             color: #333;
             margin: 0;
-            padding: 0px;
+            padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         #clockCanvas, #sleepClockCanvas {
+            width: 100%;
+            max-width: 400px; /* Constrain the canvas width */
+            height: auto;
             margin-top: 50px;
             border-radius: 50%;
             background-size: cover;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.5s ease;
-            position: relative;
         }
         #clockCanvas {
             background-image: url('clock_with_dog.png'); /* Thay bằng đường dẫn ảnh của bạn */
@@ -77,6 +83,11 @@
 </head>
 <body>
     <h1>Anh xin lỗi Lan Hương nhiều :( <br> Lan Hương cố lên ^^</h1>
+
+    <h3 style="color: #FF6347; font-family: 'Courier New', Courier, monospace; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
+        Chúc em một tháng Mười tràn đầy niềm vui, may mắn và những điều tốt đẹp bất ngờ! Mong rằng mỗi ngày trong tháng sẽ mang đến cho em nhiều cơ hội mới, thành công rực rỡ và những khoảnh khắc hạnh phúc. Hãy luôn giữ vững tinh thần lạc quan, để mọi thử thách đều trở thành động lực giúp em tiến xa hơn trên hành trình của mình. Chúc em một tháng Mười thật tuyệt vời và ý nghĩa!
+    </h3>
+    
 
     <!-- Đồng hồ hiện tại và đếm ngược đến 5 giờ chiều -->
     <canvas id="clockCanvas" width="400" height="400"></canvas>
