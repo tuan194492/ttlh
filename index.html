@@ -79,15 +79,54 @@
                 transform: translateY(-150px) scale(1.5) rotate(-45deg);
             }
         }
+
+        .heart-link {
+            position: relative;
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ff4d4d;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+            }
+
+            .heart-link::after {
+            content: '\2665'; /* Ký tự trái tim */
+            position: absolute;
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #ff4d4d;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
+            }
+
+            .heart-link:hover {
+            color: #ff1a1a;
+            }
+
+            .heart-link:hover::after {
+            opacity: 1;
+            right: -50px; /* Hiệu ứng di chuyển trái tim */
+            }
     </style>
 </head>
 <body>
     <h1>Lan Hương cố lên ^^</h1>
 
     <h3 style="color: #FF6347; font-family: 'Courier New', Courier, monospace; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">
-		Anh biết em đang rất mệt vì đau lưng, mong em sớm bớt đau và cảm thấy thoải mái hơn từng ngày. Nhớ nghỉ ngơi, chăm sóc bản thân thật tốt để mau khỏe lại nhé. Anh luôn ở đây và mong em nhanh hồi phục! ^^
+        Em gầy lắm khum béo đâu. Vậy nên, hãy ăn những món mình thích và vui vẻ với từng khoảnh khắc nhé!
+        <br/>
+        Anh có cái link này, em giúp anh hoàn thiện nó nhé ^^
+        <br/>
+        <a href="https://docs.google.com/spreadsheets/d/1PvHETXRNKXQFxVugsm4m81NkzqjQgmFdu9R2m0Uy5oo/edit?usp=sharing" class="heart-link">Ấn zô đây nha</a>
+        <br/>
+        Hy vọng ngày mới này sẽ mang đến cho em nhiều niềm vui và năng lượng tích cực. 
+        <br/>
+        Chúc em luôn mạnh mẽ, nụ cười vẫn sẽ ở trên môi, và những điều tốt đẹp sẽ đến với em!
     </h3>
-    
+
 
     <!-- Đồng hồ hiện tại và đếm ngược đến 5 giờ chiều -->
     <canvas id="clockCanvas" width="400" height="400"></canvas>
